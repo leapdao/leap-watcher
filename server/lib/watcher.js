@@ -105,7 +105,7 @@ class Watcher {
           return !e.exit.finalized ? new BN(e.exit.amount).add(acc) : acc;
         }, new BN(0));
 
-        this.state.exitSum = web3.utils.fromWei(exitSum, "ether");
+        this.state.exitSum = parseFloat(web3.utils.fromWei(exitSum, "ether"));
       })
     );
 
@@ -136,13 +136,12 @@ class Watcher {
 
   async isPlasmaValid() {
     const { exitSum, uTxoSum, plasmaBalance } = this.state;
-    const exit = exitSum - uTxoSum;
-    const uTxo = uTxoSum - exitSum;
 
-    if(uTxo === plasmaBalance || exit === plasmaBalance) {
+    if(exitSum + uTxoSum === plasmaBalance) {
       logger.info(`VALID PLASMA: true`);
     } else {
-      logger.info(`VALID PLASMA: false`);
+      logger.error(`VALID PLASMA: false`);
+      // TODO: Notify all subscribed users via twilio
     }
   }
 

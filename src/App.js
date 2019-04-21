@@ -13,7 +13,7 @@ class App extends Component {
       tel: null
     };
   }
-  
+
   render() {
     return (
       <Main>
@@ -30,7 +30,7 @@ class App extends Component {
               <div style={{ width: "50%" }}>
                 <h4>
                   Receive notifications of malicious activity on LeapDAO Plasma
-                  chain via text message, so you can take action immediatly.
+                  Chain via text message, so you can take action immediatly.
                 </h4>
 
                 <form onSubmit={this.addSubscription}>
@@ -40,7 +40,7 @@ class App extends Component {
                   <Field label="Phone Number"  />
                   <TextInput type="tel" className="input-fields" placeholder="998-988-9999"/>
 
-                  <Button> Watch </Button>
+                  <Button className='watch-button'> Watch </Button>
                 </form>
               </div>
             </div>
