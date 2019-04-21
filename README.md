@@ -14,4 +14,5 @@ Update the config file in `server/config`
 `npm run dev`
 
 Subscription UI @ http://localhost:3000
-Watcher/Backend @ http://localhost:3001
+
+Watchtower/API @ http://localhost:3001
