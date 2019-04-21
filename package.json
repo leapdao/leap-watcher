@@ -2,16 +2,27 @@
   "name": "leap-watcher",
   "version": "0.1.0",
   "private": true,
+  "main": "start.js",
   "dependencies": {
+    "bn.js": "^4.11.8",
+    "leap-core": "0.28.3",
+    "lodash": "^4.17.11",
+    "node-sass": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "twilio": "^3.30.1",
+    "web3": "1.0.0-beta.33",
+    "web3-core-promievent": "1.0.0-beta.33"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "node-env-run server --exec nodemon | pino-pretty -c | pino-colada",
+    "proxy": "http://localhost:3001",
+    "dev": "run-p server start"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +32,18 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-pino-logger": "^4.0.0",
+    "node-env-run": "^3.0.2",
+    "nodemon": "^1.18.11",
+    "npm-run-all": "^4.1.5",
+    "pino-colada": "^1.4.4",
+    "pino-pretty": "^2.6.0"
+  }
 }
