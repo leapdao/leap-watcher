@@ -53,7 +53,6 @@ class Watcher {
     );
     logger.info(`COLORS: ${colors.length}`);
 
-    // unspent transaction sums
     const uTxoSums = await Promise.all(
       colors.map(async color => {
         return uTxos.reduce((hexValue, uTxo) => {
@@ -68,7 +67,6 @@ class Watcher {
       })
     );
 
-    // total of ALL unspent transactions combined across colors.
     let utxs = 0;
 
     for (let i = 0; i < uTxoSums.length; i++) {

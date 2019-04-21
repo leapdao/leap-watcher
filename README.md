@@ -1,5 +1,5 @@
 # Leap Watcher
-A blockchain validation tool for LeapDAO Plasma Chain created for the Ethereal Virtual Hackathon.
+A blockchain validation tool for subscribing to notifications and monitoring the validity of the LeapDAO Plasma Chain. Created for the Ethereal Virtual Hackathon.
 
 
 # Installation
