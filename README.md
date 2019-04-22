@@ -1,6 +1,9 @@
 # Leap Watcher
 A blockchain validation tool for subscribing to notifications and monitoring the validity of the LeapDAO Plasma Chain. Created for the Ethereal Virtual Hackathon.
 
+# Requirements
+- Twilio Account(Paid)
+- Redis Server
 
 # Installation
 `git clone https://github.com/travisdmathis/leap-watcher.git`

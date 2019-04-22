@@ -6,15 +6,18 @@
   "dependencies": {
     "@aragon/ui": "^0.35.1",
     "bn.js": "^4.11.8",
+    "cors": "^2.8.5",
     "leap-core": "0.28.3",
+    "libphonenumber-js": "^1.7.15",
     "lodash": "^4.17.11",
     "node-sass": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
+    "redis": "^2.8.0",
     "styled-components": "^4.2.0",
     "twilio": "^3.30.1",
-    "web3": "1.0.0-beta.33",
+    "web3": "^1.0.0-beta.33",
     "web3-core-promievent": "1.0.0-beta.33"
   },
   "scripts": {

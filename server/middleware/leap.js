@@ -4,7 +4,7 @@ const logger = require("pino")();
 
 import bridgeABI from "../abis/bridge";
 import exitHandlerABI from "../abis/exitHandler";
-import config from "../config";
+import config from "../../src/config";
 
 class Leap {
   constructor() {
@@ -12,7 +12,6 @@ class Leap {
     this.bridge;
     this.exitHandler;
 
-    // instantiate providers and contracts
     this.plasma = helpers.extendWeb3(
       new Web3(config.plasmaProviderUrl)
     );
@@ -24,7 +23,6 @@ class Leap {
     this.plasma.getConfig().then(async plasmaConfig => {
       // eth provider
       this.web3 = new Web3(plasmaConfig.rootNetwork);
-
       // bridge contract
       this.bridge = new this.web3.eth.Contract(bridgeABI, plasmaConfig.bridgeAddr);
       // exitHandler contract

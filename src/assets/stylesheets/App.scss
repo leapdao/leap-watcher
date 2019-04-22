@@ -9,18 +9,19 @@
   flex-direction: column;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #ffffff;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-.leapdao-logo {
+.leapdao-container {
   display: inline-flex;
   flex-direction: column;
   color: black;
   align-items: center;
+  justify-content: center;
 }
 
 .leapdao-logo-text {
@@ -33,10 +34,58 @@
 .labels {
   margin-top: 1rem;
   margin-bottom: 0rem;
+  font-family: Chivo;
 }
 
 .input-fields {
   width: 100%;
+}
+
+.watch-button {
+  background-color: #0FA;
+  font-weight: normal;
+  font-size: 14px;
+  margin-top: 1.5rem;
+  font-family: Chivo;
+
+  &.enabled {
+    cursor: pointer;
+  }
+
+  &.disabled {
+    background-color: #eeeeee;
+    color: #aaaaaa;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0px 1px 1px #FF0;
+  }
+}
+
+.messages {
+  margin-bottom: 6rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+  width: 50%;
+
+  .error {
+    color: red;
+    border: 1px solid red;
+    border-radius: 4px;
+    padding: 5px 10px;
+  }
+
+  .success {
+    color: #0FA;
+    border: 1px solid #0FA;
+    border-radius: 4px;
+    padding: 5px 10px;
+  }
 }
 
 .regular {

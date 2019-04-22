@@ -3,9 +3,11 @@ import BN from "bn.js";
 
 import Poller from "../lib/poller";
 import { leap } from "../middleware/leap";
-import config from "../config";
+import { twilioClient } from "../middleware/twilio";
 
+import config from "../../src/config";
 import ERC20Abi from "../abis/ERC20";
+import redis from "redis";
 
 class Watcher {
   constructor() {
@@ -16,6 +18,7 @@ class Watcher {
     };
 
     this.init = this.init.bind(this);
+    this.redis = redis.createClient();
   }
 
   async init() {
@@ -119,9 +122,15 @@ class Watcher {
     await Promise.all(
       addresses.map(async address => {
         const contractInstance = await new web3.eth.Contract(ERC20Abi, address);
-        const exitHandlerBalance = await contractInstance.methods.balanceOf(exitHandler.options.address).call();
-        const bridgeBalance = await contractInstance.methods.balanceOf(bridge.options.address).call();
-        const totalBalance = new BN(exitHandlerBalance).add(new BN(bridgeBalance)).toString();
+        const exitHandlerBalance = await contractInstance.methods
+          .balanceOf(exitHandler.options.address)
+          .call();
+        const bridgeBalance = await contractInstance.methods
+          .balanceOf(bridge.options.address)
+          .call();
+        const totalBalance = new BN(exitHandlerBalance)
+          .add(new BN(bridgeBalance))
+          .toString();
         const numberBalance = web3.utils.fromWei(totalBalance, "ether");
 
         plasmaBalance += parseFloat(numberBalance);
@@ -135,11 +144,30 @@ class Watcher {
   async isPlasmaValid() {
     const { exitSum, uTxoSum, plasmaBalance } = this.state;
 
-    if(exitSum + uTxoSum === plasmaBalance) {
+    if (exitSum + 1 + uTxoSum === plasmaBalance) {
       logger.info(`VALID PLASMA: true`);
+      this.redis.set("leapPlasmaValid", true);
     } else {
       logger.error(`VALID PLASMA: false`);
-      // TODO: Notify all subscribed users via twilio
+      await this.redis.get("leapPlasmaValid", async (err, isValid) => {
+        if(isValid === 'true') {
+          await this.redis.hgetall("subscriptions", async (err, response) => {
+            this.redis.set("leapPlasmaValid", false);
+
+            for (const prop in response) {
+              const phoneNumber = response[prop];
+
+              logger.info(`SENDING MESSAGE TO: ${phoneNumber}`);
+              const date = new Date();
+
+              await twilioClient.sendNotifications({
+                body: `ALERT: LEAP PLASMA IS UNDER ATTACK! YOU HAVE 7 DAYS TO EXIT STARTING NOW! ${date.toString("dddd, dd MMMM yyyy")}`,
+                to: phoneNumber
+              });
+            }
+          });
+        }
+      });
     }
   }
 
