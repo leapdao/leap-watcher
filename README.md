@@ -1,5 +1,5 @@
 # Leap Watcher
-A blockchain validation tool for subscribing to notifications and monitoring the validity of the LeapDAO Plasma Chain. Created for the Ethereal Virtual Hackathon.
+A blockchain validation tool for subscribing to notifications and monitoring the validity of the LeapDAO implementation of More Viable Plasma, but should work with any implementation that follows the MV Plasma standards. Created for the Ethereal Virtual Hackathon.
 
 # Requirements
 - Twilio Account(Paid)
