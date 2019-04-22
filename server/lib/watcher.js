@@ -144,7 +144,7 @@ class Watcher {
   async isPlasmaValid() {
     const { exitSum, uTxoSum, plasmaBalance } = this.state;
 
-    if (exitSum + 1 + uTxoSum === plasmaBalance) {
+    if (exitSum + uTxoSum === plasmaBalance) {
       logger.info(`VALID PLASMA: true`);
       this.redis.set("leapPlasmaValid", true);
     } else {
