@@ -11,7 +11,18 @@ A blockchain validation tool for subscribing to notifications and monitoring the
 `npm install`
 
 # Edit Config
-Update the config file in `server/config`
+Update the config file in `src/config`
+
+```
+module.exports = {
+  plasmaProviderUrl: "https://mainnet-node1.leapdao.org",
+  pollingDelay: 60000, // in ms
+  twilioAuthToken: '',
+  twilioId: '',
+  twilioNumber: '',
+  web3ProviderUrl: "https://mainnet.infura.io/v3/{yourkey}"
+};
+```
 
 # Running app
 `npm run dev`
